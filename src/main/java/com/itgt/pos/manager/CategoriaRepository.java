@@ -8,9 +8,12 @@ import com.itgt.pos.model.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, String>{
     
-	List<Categoria> findAll();
+	//List<Categoria> findAll();
     
 	//Crea una nueva categoria
 	@SuppressWarnings("unchecked")
 	Categoria save(Categoria categoria);
+
+	
+
 }

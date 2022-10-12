@@ -1,8 +1,11 @@
 package com.itgt.pos.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +21,7 @@ public class CategoriaController {
     CategoriaRepository categoriaRepository;
     
     
-    @PostMapping("/categoria")
+    @PostMapping("/cat")
     public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
       try {
         Categoria _categoria= categoriaRepository.save(new Categoria(0,categoria.getNombre(), categoria.getDescripcion(), categoria.getCondicion()));
@@ -26,5 +29,10 @@ public class CategoriaController {
       } catch (Exception e) {
         return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
       }
+    }
+    
+    @GetMapping("/all")
+    public List<Categoria> getAllCategoria(){
+    	return categoriaRepository.findAll();
     }
 }
