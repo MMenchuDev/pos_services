@@ -13,7 +13,12 @@ public interface CategoriaRepository extends JpaRepository<Categoria, String>{
 	//Crea una nueva categoria
 	@SuppressWarnings("unchecked")
 	Categoria save(Categoria categoria);
-
 	
-
+	//Debuelve todas las categorias
+	List<Categoria> findAll();
+	
+	//elimina una categoria por su id
+	void deleteById(Long id);
+	
+	
 }

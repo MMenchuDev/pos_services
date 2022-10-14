@@ -26,7 +26,11 @@ public class Categoria {
 
 
 
-    public Categoria(long id, String nombre, String descripcion, String condicion) {
+    public Categoria() {
+		
+	}
+
+	public Categoria(long id, String nombre, String descripcion, String condicion) {
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
