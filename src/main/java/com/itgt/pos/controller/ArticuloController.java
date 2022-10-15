@@ -44,7 +44,7 @@ public class ArticuloController {
     	return response;
     }
     
-    @GetMapping("")
+    @GetMapping("all")
     public ResponseEntity<?> getAllItems(){
     	ResponseEntity<?> response;
     		try {
