@@ -1,5 +1,6 @@
 package com.itgt.pos.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itgt.pos.model.Categoria;
+import com.itgt.pos.service.CategoriaService;
 import com.itgt.pos.manager.CategoriaRepository;
 
 @RestController
@@ -28,6 +30,12 @@ public class CategoriaController {
     @Autowired
     CategoriaRepository categoriaRepository;
     
+    @Autowired
+    CategoriaService service;
+    
+    
+    HashMap<String, Object> mapG = new HashMap<String, Object>();
+    List<Categoria> dataG = new ArrayList<>();
     
     @PostMapping("/cat")
     public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
@@ -68,5 +76,21 @@ public class CategoriaController {
     	}
     }
     
+    @PutMapping("categoria")
+    public ResponseEntity<?> updCategoria(@RequestBody Categoria categoria){
+    	ResponseEntity<?> response;//= new ResponseEntity<>(null);
+    		try {
+    			dataG.clear();
+    	        Categoria newCategoria = service.updCategoria(categoria);
+    	        dataG.add(newCategoria);
+        		mapG.put("id", 1);
+            	mapG.put("msj", "Actualizado exitosamente");
+    			mapG.put("data", dataG);
+    			response = ResponseEntity.ok(mapG);
+    		}catch(Exception ex) {
+    	        response = new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    		}
+    	return response;
+    }
     
 }

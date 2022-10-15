@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.itgt.pos.model.Categoria;
 
-public interface CategoriaRepository extends JpaRepository<Categoria, String>{
+public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
     
 	//List<Categoria> findAll();
-    
+   /* 
 	//Crea una nueva categoria
 	@SuppressWarnings("unchecked")
 	Categoria save(Categoria categoria);
@@ -18,7 +18,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria, String>{
 	List<Categoria> findAll();
 	
 	//elimina una categoria por su id
-	void deleteById(Long id);
+	void deleteById(Long id);*/
 	
 	
 }
