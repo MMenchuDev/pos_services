@@ -1,5 +1,8 @@
 package com.itgt.pos.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +24,13 @@ public class ArticuloService {
 		}
 		return item;
 	}
-	
+	public List<Articulo> getAll() throws Exception{
+		List<Articulo> items = new ArrayList<Articulo>();
+		try {
+			items = repo.findAll();	
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
 }
