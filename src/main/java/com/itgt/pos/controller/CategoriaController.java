@@ -37,7 +37,7 @@ public class CategoriaController {
     HashMap<String, Object> mapG = new HashMap<String, Object>();
     List<Categoria> dataG = new ArrayList<>();
     
-    @PostMapping("/cat")
+    @PostMapping("categoria")
     public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
       try {
         Categoria _categoria= categoriaRepository.save(new Categoria(0,categoria.getNombre(), categoria.getDescripcion(), categoria.getCondicion()));
