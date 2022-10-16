@@ -51,11 +51,17 @@ public class ArticuloService {
 		Articulo item;
 		try {
 			item = repo.save(data);
-			//repo.save(data);	
-			//item = repo.findById(data.getId()).get();
 		} catch(Exception ex) {
 			throw new Exception(ex.getMessage());
 		}
 		return item;
+	}
+	
+	public void delItem(Long id) throws Exception{
+		try {
+			repo.deleteById(id);
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
 	}
 }
