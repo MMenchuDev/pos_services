@@ -63,8 +63,27 @@ public class CategoriaController {
         }        
     }
     
+    @GetMapping("/categoria/{id}/byId")
+    public ResponseEntity<?> getAllCategoria(@PathVariable("id") Long id){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+        	dataG.clear();
+            Categoria item = service.getItemById(id);
+            dataG.add(item);
+            if(dataG.size() > 0) {
+            	map.put("id", 1);
+            	map.put("msj", "Elemento encontrados");
+            	map.put("data", dataG);
+            	return ResponseEntity.ok(map);
+            }else {
+            	return ResponseEntity.noContent().build();
+            }         	
+        }catch(Exception Ex) {
+        	return new ResponseEntity<>(Ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     @DeleteMapping("categoria/{id}")
-    //@Transactional
     public ResponseEntity<?> deleteCategoria(@PathVariable("id") Long id){
         HashMap<String, Object> map = new HashMap<String, Object>();
     	try{
@@ -73,7 +92,6 @@ public class CategoriaController {
         	map.put("msj", "Anulado Exisotamente");
         	return ResponseEntity.ok(map);
     	}catch(Exception ex){
-    		System.out.println(ex.getMessage());
     		return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     	}
     }

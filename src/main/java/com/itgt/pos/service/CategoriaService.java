@@ -23,4 +23,14 @@ public class CategoriaService {
 		}
 		return item;
 	}
+	
+	public Categoria getItemById(Long id) throws Exception{
+		Categoria item;
+		try {
+			item = repositorio.findById(id).get();
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
+	}
 }
