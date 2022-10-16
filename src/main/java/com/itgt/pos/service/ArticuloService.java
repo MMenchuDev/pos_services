@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itgt.pos.manager.ArticuloRepository;
 import com.itgt.pos.model.Articulo;
+import com.itgt.pos.model.Articulo;
 
 @Service
 public class ArticuloService {
@@ -32,5 +33,15 @@ public class ArticuloService {
 			throw new Exception(ex.getMessage());
 		}
 		return items;
+	}
+	
+	public Articulo getItemById(Long id) throws Exception{
+		Articulo item;
+		try {
+			item = repo.findById(id).get();
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
 	}
 }

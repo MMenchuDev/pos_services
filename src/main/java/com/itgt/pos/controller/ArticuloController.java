@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itgt.pos.model.Articulo;
-import com.itgt.pos.model.Categoria;
+import com.itgt.pos.model.Articulo;
 import com.itgt.pos.service.ArticuloService;
 
 @RestController
@@ -59,5 +60,23 @@ public class ArticuloController {
     		}
     	return response;
     }
-	
+    @GetMapping("id/{id}")
+    public ResponseEntity<?> getArticuloById(@PathVariable("id") Long id){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+        	dataG.clear();
+            Articulo item = service.getItemById(id);
+            dataG.add(item);
+            if(dataG.size() > 0) {
+            	map.put("id", 1);
+            	map.put("msj", "Elemento encontrados");
+            	map.put("data", dataG);
+            	return ResponseEntity.ok(map);
+            }else {
+            	return ResponseEntity.noContent().build();
+            }         	
+        }catch(Exception Ex) {
+        	return new ResponseEntity<>(Ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
