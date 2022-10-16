@@ -10,6 +10,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import com.itgt.pos.model.Categoria;
 import com.itgt.pos.service.CategoriaService;
 import com.itgt.pos.manager.CategoriaRepository;
 
+@CrossOrigin(originPatterns = {"http://localhost:3000"}) //acceso a datos React
 @RestController
 @RequestMapping("/api")
 public class CategoriaController {
@@ -62,7 +64,7 @@ public class CategoriaController {
     }
     
     @DeleteMapping("categoria/{id}")
-    @Transactional
+    //@Transactional
     public ResponseEntity<?> deleteCategoria(@PathVariable("id") Long id){
         HashMap<String, Object> map = new HashMap<String, Object>();
     	try{
@@ -72,7 +74,7 @@ public class CategoriaController {
         	return ResponseEntity.ok(map);
     	}catch(Exception ex){
     		System.out.println(ex.getMessage());
-        	return (ResponseEntity<?>) ResponseEntity.badRequest();
+    		return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     	}
     }
     
