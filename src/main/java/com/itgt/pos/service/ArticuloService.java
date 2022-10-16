@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.itgt.pos.manager.ArticuloRepository;
 import com.itgt.pos.model.Articulo;
 import com.itgt.pos.model.Articulo;
+import com.itgt.pos.model.Articulo;
 
 @Service
 public class ArticuloService {
@@ -40,6 +41,19 @@ public class ArticuloService {
 		try {
 			item = repo.findById(id).get();
 		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
+	}
+	
+	
+	public Articulo updItem(Articulo data) throws Exception{
+		Articulo item;
+		try {
+			item = repo.save(data);
+			//repo.save(data);	
+			//item = repo.findById(data.getId()).get();
+		} catch(Exception ex) {
 			throw new Exception(ex.getMessage());
 		}
 		return item;

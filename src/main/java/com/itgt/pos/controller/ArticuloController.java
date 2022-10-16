@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itgt.pos.model.Articulo;
 import com.itgt.pos.model.Articulo;
+import com.itgt.pos.model.Articulo;
 import com.itgt.pos.service.ArticuloService;
 
 @RestController
@@ -29,7 +30,7 @@ public class ArticuloController {
     List<Articulo> dataG = new ArrayList<>();
     
     @PostMapping("")
-    public ResponseEntity<?> updItem(@RequestBody Articulo item){
+    public ResponseEntity<?> addItem(@RequestBody Articulo item){
     	ResponseEntity<?> response;
     		try {
     			dataG.clear();
@@ -78,5 +79,22 @@ public class ArticuloController {
         }catch(Exception Ex) {
         	return new ResponseEntity<>(Ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    
+    @PutMapping("")
+    public ResponseEntity<?> updItem(@RequestBody Articulo data){
+    	ResponseEntity<?> response;//= new ResponseEntity<>(null);
+    		try {
+    			dataG.clear();
+    	        Articulo newItem = service.updItem(data);
+    	        dataG.add(newItem);
+        		mapG.put("id", 1);
+            	mapG.put("msj", "Actualizado exitosamente");
+    			mapG.put("data", dataG);
+    			response = ResponseEntity.ok(mapG);
+    		}catch(Exception ex) {
+    	        response = new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    		}
+    	return response;
     }
 }
