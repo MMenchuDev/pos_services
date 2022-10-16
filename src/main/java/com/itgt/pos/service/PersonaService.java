@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itgt.pos.manager.PersonaRepository;
 import com.itgt.pos.model.Persona;
+import com.itgt.pos.model.Persona;
 
 @Service
 public class PersonaService {
@@ -32,5 +33,15 @@ public class PersonaService {
 			throw new Exception(ex.getMessage());
 		}
 		return items;
+	}
+	
+	public Persona getItemById(Long id) throws Exception{
+		Persona item;
+		try {
+			item = repo.findById(id).get();
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
 	}
 }
