@@ -63,8 +63,8 @@ public class CategoriaController {
         }        
     }
     
-    @GetMapping("/categoria/{id}/byId")
-    public ResponseEntity<?> getAllCategoria(@PathVariable("id") Long id){
+    @GetMapping("/categoria/{id}")
+    public ResponseEntity<?> getCategoriaById(@PathVariable("id") Long id){
         HashMap<String, Object> map = new HashMap<String, Object>();
         try {
         	dataG.clear();
