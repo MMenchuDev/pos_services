@@ -19,7 +19,7 @@ import com.itgt.pos.model.Persona;
 import com.itgt.pos.service.PersonaService;
 
 @RestController
-@RequestMapping("Persona")
+@RequestMapping("api/Persona")
 public class PersonaController {
   @Autowired
   PersonaService service;

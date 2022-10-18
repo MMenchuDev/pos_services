@@ -22,7 +22,7 @@ import com.itgt.pos.model.Articulo;
 import com.itgt.pos.service.ArticuloService;
 
 @RestController
-@RequestMapping("Articulo")
+@RequestMapping("api/Articulo")
 public class ArticuloController {
 
 	@Autowired
