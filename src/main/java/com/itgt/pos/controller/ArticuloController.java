@@ -111,4 +111,5 @@ public class ArticuloController {
     		return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     	}
     }
+  
 }
