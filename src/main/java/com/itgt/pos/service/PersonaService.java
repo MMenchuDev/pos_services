@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.itgt.pos.manager.PersonaRepository;
 import com.itgt.pos.model.Persona;
-import com.itgt.pos.model.Persona;
 
 @Service
 public class PersonaService {
@@ -44,4 +43,15 @@ public class PersonaService {
 		}
 		return item;
 	}
+	public Persona updItem(Persona data) throws Exception{
+		Persona item;
+		try {
+			item = repo.save(data);
+		} catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
+	}
+  
+  
 }
