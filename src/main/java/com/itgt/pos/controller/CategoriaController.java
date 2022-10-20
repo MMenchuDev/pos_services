@@ -25,7 +25,7 @@ import com.itgt.pos.model.Categoria;
 import com.itgt.pos.service.CategoriaService;
 import com.itgt.pos.manager.CategoriaRepository;
 
-//@CrossOrigin(originPatterns = {"http://localhost:3000"}) //acceso a datos React
+@CrossOrigin(originPatterns = {"http://localhost:3000"}) //acceso a datos React
 @RestController
 @RequestMapping("/api")
 public class CategoriaController {
