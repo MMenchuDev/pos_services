@@ -1,14 +1,18 @@
 package com.itgt.pos.model;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -46,6 +50,9 @@ public class Egreso {
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "egreso")
+    private List<DetalleEgreso> items;
     
     public Egreso() {
 
@@ -130,7 +137,13 @@ public class Egreso {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
-    
+
+	public List<DetalleEgreso> getItems() {
+		return items;
+	}
+
+	public void setItems(List<DetalleEgreso> items) {
+		this.items = items;
+	}
+            
 }

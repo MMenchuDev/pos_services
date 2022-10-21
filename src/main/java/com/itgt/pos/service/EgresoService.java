@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itgt.pos.manager.EgresoRepository;
 import com.itgt.pos.model.Egreso;
+import com.itgt.pos.model.Egreso;
 
 @Service
 public class EgresoService {
@@ -23,5 +24,16 @@ public class EgresoService {
 			throw new Exception(ex.getMessage());
 		}
 		return items;
+	}
+	
+	public Egreso getItemById(Long id) throws Exception{
+		Egreso item;
+		try {
+			item = repo.findById(id).get();
+			
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
 	}
 }
