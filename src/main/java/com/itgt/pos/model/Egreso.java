@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "egreso")
 public class Egreso {
@@ -51,7 +54,8 @@ public class Egreso {
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "egreso")
+    @OneToMany(mappedBy="egreso")
+    @JsonManagedReference
     private List<DetalleEgreso> items;
     
     public Egreso() {

@@ -2,12 +2,15 @@ package com.itgt.pos.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "detalle_egreso")
@@ -25,8 +28,9 @@ public class DetalleEgreso {
     @Column(name = "descuento")
     private float descuento;
     
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_egreso")
+    @JsonBackReference
     private Egreso egreso;
     
     @ManyToOne
