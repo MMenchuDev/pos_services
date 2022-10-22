@@ -21,4 +21,11 @@ public class DetalleEgresoService {
 		}
 		return item;
 	}
+	  public void delItem(Long id) throws Exception{
+			try {
+				repo.deleteById(id);
+			}catch(Exception ex) {
+				throw new Exception(ex.getMessage());
+			}
+		}	
 }

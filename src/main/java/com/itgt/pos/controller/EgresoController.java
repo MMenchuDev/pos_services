@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -91,4 +92,21 @@ public class EgresoController {
 		}
 		return response;
 	}
+	
+	  @DeleteMapping("id/{id}")
+	  public ResponseEntity<?> deleteItem(@PathVariable("id") Long id) {
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    try {
+	      Egreso item = service.getItemById(id);
+	      for(DetalleEgreso i : item.getItems()){
+	    	  serviceExt.delItem(i.getId());
+	      }
+	      service.delItem(id);
+	      map.put("id", 1);
+	      map.put("msj", "Anulado Exisotamente");
+	      return ResponseEntity.ok(map);
+	    } catch (Exception ex) {
+	      return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
 }
