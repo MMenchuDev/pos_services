@@ -77,7 +77,7 @@ public class UsuarioController {
   }
 
   @GetMapping("id/{id}")
-  public ResponseEntity<?> getUsuarioById(@PathVariable("id") String id) {
+  public ResponseEntity<?> getUsuarioById(@PathVariable("id") Long id) {
     HashMap<String, Object> map = new HashMap<String, Object>();
     try {
       dataG.clear();
@@ -114,7 +114,7 @@ public class UsuarioController {
   }
 
   @DeleteMapping("id/{id}")
-  public ResponseEntity<?> deleteItem(@PathVariable("id") String id) {
+  public ResponseEntity<?> deleteItem(@PathVariable("id") Long id) {
     HashMap<String, Object> map = new HashMap<String, Object>();
     try {
       service.delItem(id);

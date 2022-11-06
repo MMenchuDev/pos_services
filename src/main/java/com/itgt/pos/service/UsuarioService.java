@@ -26,7 +26,7 @@ public class UsuarioService {
 		return items;
 	}
 	
-	public Usuario getItemById(String id) throws Exception{
+	public Usuario getItemById(Long id) throws Exception{
 		Usuario item;
 		try {
 			item = repo.findById(id).get();
@@ -56,7 +56,7 @@ public class UsuarioService {
 		return item;
 	}
 	
-	public void delItem(String id) throws Exception{
+	public void delItem(Long id) throws Exception{
 		try {
 			repo.deleteById(id);
 		}catch(Exception ex) {
