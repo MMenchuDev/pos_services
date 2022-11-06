@@ -18,6 +18,9 @@ public class Usuario {
 
   @Column(name = "password")
   private String password;
+  
+  @Column(name = "id_estado")
+  private String id_estado;
 
   public Usuario() {
 
@@ -57,7 +60,15 @@ public class Usuario {
     this.password = password;
   }
 
-  @Override
+  public String getId_estado() {
+	return id_estado;
+  }
+
+  public void setId_estado(String id_estado) {
+	this.id_estado = id_estado;
+  }
+
+@Override
   public String toString() {
     return "Usuario [id=" + id + ", nombre=" + nombre + ", desc=" + usuario + ", password=" + password + "]";
   }

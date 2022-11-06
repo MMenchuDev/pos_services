@@ -6,17 +6,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itgt.pos.manager.EgresoRepository;
-import com.itgt.pos.model.Egreso;
+import com.itgt.pos.manager.UsuarioRepository;
+import com.itgt.pos.model.Persona;
+import com.itgt.pos.model.Usuario;
 
 @Service
-public class EgresoService {
+public class UsuarioService {
 	
 	@Autowired
-	private EgresoRepository repo;
-
-	public List<Egreso> getAll() throws Exception{
-		List<Egreso> items = new ArrayList<Egreso>();
+	private UsuarioRepository repo;
+	
+	public List<Usuario> getAll() throws Exception{
+		List<Usuario> items = new ArrayList<Usuario>();
 		try {
 			items = repo.findAll();	
 		}catch(Exception ex) {
@@ -25,8 +26,8 @@ public class EgresoService {
 		return items;
 	}
 	
-	public Egreso getItemById(Long id) throws Exception{
-		Egreso item;
+	public Usuario getItemById(String id) throws Exception{
+		Usuario item;
 		try {
 			item = repo.findById(id).get();
 		}catch(Exception ex) {
@@ -35,8 +36,8 @@ public class EgresoService {
 		return item;
 	}
 	
-	public Egreso addItem(Egreso data) throws Exception{
-		Egreso item = new Egreso();
+	public Usuario addItem(Usuario data) throws Exception{
+		Usuario item = new Usuario();
 		try {
 			item = repo.save(data);
 		}catch(Exception ex) {
@@ -45,7 +46,17 @@ public class EgresoService {
 		return item;
 	}
 	
-	public void delItem(Long id) throws Exception{
+	public Usuario updItem(Usuario data) throws Exception{
+		Usuario item;
+		try {
+			item = repo.save(data);
+		} catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
+	}
+	
+	public void delItem(String id) throws Exception{
 		try {
 			repo.deleteById(id);
 		}catch(Exception ex) {
