@@ -9,83 +9,83 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "detalle_ingreso")
 public class DetalleIngreso {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
-    @Column(name = "cantidad")
-    private int cantidad;
-    
-    @Column(name = "precio_compra")
-    private float precio_compra;
-    
-    @Column(name = "precio_venta")
-    private float precio_venta;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_ingreso")
-    private Ingreso ingreso;
-    
-    @ManyToOne
-    @JoinColumn(name="id_articulo")
-    private Articulo articulo;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
 
-    public DetalleIngreso() {
+  @Column(name = "cantidad")
+  private int cantidad;
 
-    }
+  @Column(name = "precio_compra")
+  private float precio_compra;
 
-    public long getId() {
-        return id;
-    }
+  @Column(name = "precio_venta")
+  private float precio_venta;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "id_ingreso")
+  @JsonBackReference
+  private Ingreso ingreso;
 
-    public int getCantidad() {
-        return cantidad;
-    }
+  @ManyToOne
+  @JoinColumn(name = "id_articulo")
+  private Articulo articulo;
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
+  public DetalleIngreso() {
 
-    public float getPrecio_compra() {
-        return precio_compra;
-    }
+  }
 
-    public void setPrecio_compra(float precio_compra) {
-        this.precio_compra = precio_compra;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public float getPrecio_venta() {
-        return precio_venta;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setPrecio_venta(float precio_venta) {
-        this.precio_venta = precio_venta;
-    }
+  public int getCantidad() {
+    return cantidad;
+  }
 
-    public Ingreso getIngreso() {
-        return ingreso;
-    }
+  public void setCantidad(int cantidad) {
+    this.cantidad = cantidad;
+  }
 
-    public void setIngreso(Ingreso ingreso) {
-        this.ingreso = ingreso;
-    }
+  public float getPrecio_compra() {
+    return precio_compra;
+  }
 
-    public Articulo getArticulo() {
-        return articulo;
-    }
+  public void setPrecio_compra(float precio_compra) {
+    this.precio_compra = precio_compra;
+  }
 
-    public void setArticulo(Articulo articulo) {
-        this.articulo = articulo;
-    }
+  public float getPrecio_venta() {
+    return precio_venta;
+  }
 
-    
-    
+  public void setPrecio_venta(float precio_venta) {
+    this.precio_venta = precio_venta;
+  }
+
+  public Ingreso getIngreso() {
+    return ingreso;
+  }
+
+  public void setIngreso(Ingreso ingreso) {
+    this.ingreso = ingreso;
+  }
+
+  public Articulo getArticulo() {
+    return articulo;
+  }
+
+  public void setArticulo(Articulo articulo) {
+    this.articulo = articulo;
+  }
+
 }
