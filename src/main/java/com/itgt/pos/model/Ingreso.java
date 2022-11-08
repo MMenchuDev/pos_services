@@ -1,6 +1,7 @@
 package com.itgt.pos.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "ingreso")
@@ -33,8 +39,8 @@ public class Ingreso {
     @Column(name = "impuesto")
     private float impuesto;
     
-    @Column(name = "total_egreso")
-    private String total_egreso;
+    @Column(name = "total_ingreso")
+    private String total_ingreso;
     
     @Column(name = "estado")
     private int estado;
@@ -47,6 +53,10 @@ public class Ingreso {
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
 
+    @OneToMany(mappedBy="ingreso")
+    @JsonManagedReference
+    private List<DetalleIngreso> items;
+    
     public Ingreso() {
 
     }
@@ -99,12 +109,12 @@ public class Ingreso {
         this.impuesto = impuesto;
     }
 
-    public String getTotal_egreso() {
-        return total_egreso;
+    public String gettotal_ingreso() {
+        return total_ingreso;
     }
 
-    public void setTotal_egreso(String total_egreso) {
-        this.total_egreso = total_egreso;
+    public void settotal_ingreso(String total_ingreso) {
+        this.total_ingreso = total_ingreso;
     }
 
     public int getEstado() {
@@ -130,7 +140,12 @@ public class Ingreso {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
-    
+
+	public List<DetalleIngreso> getItems() {
+		return items;
+	}
+
+	public void setItems(List<DetalleIngreso> items) {
+		this.items = items;
+	}   
 }
