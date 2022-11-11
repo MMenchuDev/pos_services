@@ -25,6 +25,7 @@ import com.itgt.pos.service.IngresoService;
 @RestController
 @RequestMapping("api/Ingreso")
 public class IngresoController {
+	
 	@Autowired
 	IngresoService service;
 	@Autowired
