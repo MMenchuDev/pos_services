@@ -37,6 +37,10 @@ public class Articulo {
     @ManyToOne
     @JoinColumn(name="id_categoria")
     private Categoria categoria;
+    
+    @ManyToOne
+    @JoinColumn(name="id_presenacion")
+    private Presentacion presentacion;    
 
 	public Articulo() {
 		
@@ -106,6 +110,11 @@ public class Articulo {
 		this.categoria = categoria;
 	}
 
-    
+	public Presentacion getPresentacion() {
+		return presentacion;
+	}
 
+	public void setPresentacion(Presentacion presentacion) {
+		this.presentacion = presentacion;
+	}
 }
