@@ -64,4 +64,14 @@ public class ArticuloService {
 			throw new Exception(ex.getMessage());
 		}
 	}
+	
+	public Articulo getItemByCodigo(String codigo) throws Exception{
+		Articulo item;
+		try {
+			item = repo.findByCodigoAndEstado(codigo,1).get(0);
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
+	}
 }

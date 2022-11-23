@@ -64,6 +64,7 @@ public class ArticuloController {
     		}
     	return response;
     }
+ 
     @GetMapping("id/{id}")
     public ResponseEntity<?> getArticuloById(@PathVariable("id") Long id){
         HashMap<String, Object> map = new HashMap<String, Object>();
@@ -113,4 +114,28 @@ public class ArticuloController {
     		return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     	}
     }
+    
+    @GetMapping("codigo/{codigo}")
+    public ResponseEntity<?> getArticuloByCodigo(@PathVariable("codigo") String codigo){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+        	dataG.clear();
+            Articulo item = service.getItemByCodigo(codigo);
+            dataG.add(item);
+            if(dataG.size() > 0) {
+            	
+            	map.put("id", 1);
+            	map.put("msj", "Elemento encontrados");
+            	map.put("data", dataG);
+            	return ResponseEntity.ok(map);
+            }else {
+            	return ResponseEntity.noContent().build();
+            }         	
+        }catch(Exception Ex) {
+        	map.put("id", -1);
+        	map.put("msj", "Elemento encontrado");
+        	return new ResponseEntity<>(map, HttpStatus.OK);
+        }
+    }    
+    
 }

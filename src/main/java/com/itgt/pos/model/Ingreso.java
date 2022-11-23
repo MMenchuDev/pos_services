@@ -57,6 +57,10 @@ public class Ingreso {
     @JsonManagedReference
     private List<DetalleIngreso> items;
     
+    @ManyToOne
+    @JoinColumn(name="id_sucursal")
+    private Sucursal sucursal;
+    
     public Ingreso() {
 
     }
@@ -109,13 +113,7 @@ public class Ingreso {
         this.impuesto = impuesto;
     }
 
-    public String gettotal_ingreso() {
-        return total_ingreso;
-    }
 
-    public void settotal_ingreso(String total_ingreso) {
-        this.total_ingreso = total_ingreso;
-    }
 
     public int getEstado() {
         return estado;
@@ -147,5 +145,24 @@ public class Ingreso {
 
 	public void setItems(List<DetalleIngreso> items) {
 		this.items = items;
+	}
+
+	public String getTotal_ingreso() {
+		return total_ingreso;
+	}
+
+	public void setTotal_ingreso(String total_ingreso) {
+		this.total_ingreso = total_ingreso;
+	}
+
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
 	}   
+	
+	
+	
 }
