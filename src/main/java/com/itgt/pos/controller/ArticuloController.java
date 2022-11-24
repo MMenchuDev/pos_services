@@ -120,6 +120,7 @@ public class ArticuloController {
         HashMap<String, Object> map = new HashMap<String, Object>();
         try {
         	dataG.clear();
+        	System.out.println(codigo);
             Articulo item = service.getItemByCodigo(codigo);
             dataG.add(item);
             if(dataG.size() > 0) {

@@ -111,4 +111,20 @@ public class PersonaController {
       return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  @GetMapping("proveedor/all")
+  public ResponseEntity<?> getAllItemsOther() {
+    ResponseEntity<?> response;
+    try {
+      dataG.clear();
+      dataG = service.getAllProveedores();
+      mapG.put("id", dataG.size());
+      mapG.put("msj", "Datos obtenidos exitosamente");
+      mapG.put("data", dataG);
+      response = ResponseEntity.ok(mapG);
+    } catch (Exception ex) {
+      response = new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return response;
+  }
 }

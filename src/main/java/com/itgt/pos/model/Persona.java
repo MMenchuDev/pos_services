@@ -15,7 +15,7 @@ public class Persona {
     private long id;
     
     @Column(name = "tipo_persona")
-    private int tipo_persona;
+    private int tipopersona;
 
     @Column(name = "tipo_documento")
     private int tipo_documento;
@@ -35,6 +35,10 @@ public class Persona {
     @Column(name = "correo")
     private String correo;
 
+    @Column(name = "estado")
+    private int estado;
+
+    
     public Persona() {
 
     }
@@ -47,15 +51,15 @@ public class Persona {
         this.id = id;
     }
 
-    public int getTipo_persona() {
-        return tipo_persona;
-    }
+    public int getTipopersona() {
+		return tipopersona;
+	}
 
-    public void setTipo_persona(int tipo_persona) {
-        this.tipo_persona = tipo_persona;
-    }
+	public void setTipopersona(int tipopersona) {
+		this.tipopersona = tipopersona;
+	}
 
-    public int getTipo_documento() {
+	public int getTipo_documento() {
         return tipo_documento;
     }
 
@@ -102,6 +106,14 @@ public class Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
 
     
 }

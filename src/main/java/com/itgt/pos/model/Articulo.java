@@ -25,6 +25,9 @@ public class Articulo {
     @Column(name = "existencia")
     private int existencia;
     
+    @Column(name = "precio_venta")
+    private float precio_venta;    
+    
     @Column(name = "descripcion")
     private String descripcion;
     
@@ -117,4 +120,14 @@ public class Articulo {
 	public void setPresentacion(Presentacion presentacion) {
 		this.presentacion = presentacion;
 	}
+
+	public float getPrecio_venta() {
+		return precio_venta;
+	}
+
+	public void setPrecio_venta(float precio_venta) {
+		this.precio_venta = precio_venta;
+	}
+
+
 }

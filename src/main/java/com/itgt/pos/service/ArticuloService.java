@@ -70,6 +70,7 @@ public class ArticuloService {
 		try {
 			item = repo.findByCodigoAndEstado(codigo,1).get(0);
 		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
 			throw new Exception(ex.getMessage());
 		}
 		return item;

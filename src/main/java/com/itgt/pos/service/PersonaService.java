@@ -60,4 +60,14 @@ public class PersonaService {
 		}
 	}
   
+	public List<Persona> getAllProveedores() throws Exception{
+		List<Persona> items = new ArrayList<Persona>();
+		try {
+			items = repo.findByTipopersonaAndEstado(2,1);	
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
+  
 }
