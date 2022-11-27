@@ -24,7 +24,7 @@ public class Persona {
     private String nombre;
     
     @Column(name = "no_documento")
-    private String no_documento;
+    private String nodocumento;
     
     @Column(name = "direccion")
     private String direccion;
@@ -75,15 +75,16 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getNo_documento() {
-        return no_documento;
-    }
 
-    public void setNo_documento(String no_documento) {
-        this.no_documento = no_documento;
-    }
+    public String getNodocumento() {
+		return nodocumento;
+	}
 
-    public String getDireccion() {
+	public void setNodocumento(String nodocumento) {
+		this.nodocumento = nodocumento;
+	}
+
+	public String getDireccion() {
         return direccion;
     }
 
