@@ -75,4 +75,14 @@ public class ArticuloService {
 		}
 		return item;
 	}
+	public List<Articulo> getItemByEstado() throws Exception{
+		List<Articulo> items = new ArrayList<Articulo>();
+		try {
+			items = repo.findByEstado(1);
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
 }

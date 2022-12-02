@@ -120,7 +120,6 @@ public class ArticuloController {
         HashMap<String, Object> map = new HashMap<String, Object>();
         try {
         	dataG.clear();
-        	System.out.println(codigo);
             Articulo item = service.getItemByCodigo(codigo);
             dataG.add(item);
             if(dataG.size() > 0) {
@@ -138,5 +137,24 @@ public class ArticuloController {
         	return new ResponseEntity<>(map, HttpStatus.OK);
         }
     }    
-    
+    @GetMapping("ventas")
+    public ResponseEntity<?> getArticuloVentas(){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+			dataG.clear();
+			dataG = service.getItemByEstado();
+            if(dataG.size() > 0) {
+            	map.put("id", dataG.size());
+            	map.put("msj", "Elemento encontrados");
+            	map.put("data", dataG);
+            	return ResponseEntity.ok(map);
+            }else {
+            	return ResponseEntity.noContent().build();
+            }         	
+        }catch(Exception Ex) {
+        	map.put("id", -1);
+        	map.put("msj", "Elemento encontrado");
+        	return new ResponseEntity<>(map, HttpStatus.OK);
+        }
+    }  
 }

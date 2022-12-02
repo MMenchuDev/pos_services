@@ -8,4 +8,6 @@ import com.itgt.pos.model.Articulo;
 
 public interface ArticuloRepository extends JpaRepository<Articulo, Long>{
 	List<Articulo> findByCodigoAndEstado(String codigo, int estado);
+	
+	List<Articulo> findByEstado(int estado);
 }
