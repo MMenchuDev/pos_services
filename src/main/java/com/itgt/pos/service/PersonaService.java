@@ -79,5 +79,15 @@ public class PersonaService {
 		}
 		return items;
 	}
+	
+	public List<Persona> getProveedorByNodoc(String nodocumento) throws Exception{
+		List<Persona> items = new ArrayList<Persona>();
+		try {
+			items = repo.findByTipopersonaAndNodocumentoAndEstado(2,nodocumento,1);	
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
   
 }

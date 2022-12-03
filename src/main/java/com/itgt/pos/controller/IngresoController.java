@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itgt.pos.model.Articulo;
 import com.itgt.pos.model.DetalleIngreso;
 import com.itgt.pos.model.Ingreso;
+import com.itgt.pos.service.ArticuloService;
 import com.itgt.pos.service.DetalleIngresoService;
 import com.itgt.pos.service.IngresoService;
 
@@ -30,6 +32,9 @@ public class IngresoController {
 	IngresoService service;
 	@Autowired
 	DetalleIngresoService serviceExt;
+	@Autowired
+	ArticuloService serviceExtDos;
+	
 	HashMap<String, Object> mapG = new HashMap<String, Object>();
 	List<Ingreso> dataG = new ArrayList<>();	
 
@@ -80,6 +85,13 @@ public class IngresoController {
 			for (DetalleIngreso i : item.getItems()) {
 				i.setId(newItem.getId());
 				serviceExt.addItem(i);
+				
+				//Actualizar existencia
+				//1.Obtener el producto que se está comprando
+				Articulo art = serviceExtDos.getItemById(i.getArticulo().getId());
+				//2. Actualizar existencia
+				art.setExistencia(art.getExistencia()+i.getCantidad());
+				serviceExtDos.updItem(art);
 			}
 			// OBTENER EL ENCABEZADO Y DETALLE GUARDADO
 			newItem = service.getItemById(newItem.getId());
