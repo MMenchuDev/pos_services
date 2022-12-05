@@ -91,6 +91,11 @@ public class IngresoController {
 				Articulo art = serviceExtDos.getItemById(i.getArticulo().getId());
 				//2. Actualizar existencia
 				art.setExistencia(art.getExistencia()+i.getCantidad());
+				// si el articulo tiene precio venta 0, es por que no se ha realizado alguna compra aún de ese producto, 
+				// por lo que se llena con el precio venta de la compra actual 
+				if(art.getPrecio_venta()==0) {
+					art.setPrecio_venta(i.getPrecio_venta());
+				}
 				serviceExtDos.updItem(art);
 			}
 			// OBTENER EL ENCABEZADO Y DETALLE GUARDADO
