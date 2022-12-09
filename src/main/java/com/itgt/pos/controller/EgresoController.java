@@ -23,8 +23,10 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itgt.pos.model.Articulo;
 import com.itgt.pos.model.DetalleEgreso;
 import com.itgt.pos.model.Egreso;
+import com.itgt.pos.service.ArticuloService;
 import com.itgt.pos.service.DetalleEgresoService;
 import com.itgt.pos.service.EgresoService;
 
@@ -36,6 +38,9 @@ public class EgresoController {
 	EgresoService service;
 	@Autowired
 	DetalleEgresoService serviceExt;
+	@Autowired
+	ArticuloService serviceExtDos;
+	
 	HashMap<String, Object> mapG = new HashMap<String, Object>();
 	List<Egreso> dataG = new ArrayList<>();
 
@@ -86,6 +91,10 @@ public class EgresoController {
 			for (DetalleEgreso i : item.getItems()) {
 				i.setId(newItem.getId());
 				serviceExt.addItem(i);
+				
+				Articulo element = serviceExtDos.getItemById(i.getArticulo().getId());
+				element.setExistencia(element.getExistencia() - i.getCantidad());
+				serviceExtDos.updItem(element);	
 			}
 			// OBTENER EL ENCABEZADO Y DETALLE GUARDADO
 			newItem = service.getItemById(newItem.getId());
