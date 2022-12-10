@@ -22,7 +22,7 @@ import com.itgt.pos.service.PresentacionService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/Presentacion/")
+@RequestMapping("/api/Presentacion")
 public class PresentacionController {
 	
 	@Autowired
