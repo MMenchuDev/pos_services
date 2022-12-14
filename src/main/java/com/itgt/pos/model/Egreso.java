@@ -62,6 +62,10 @@ public class Egreso {
     @JoinColumn(name="id_sucursal")
     private Sucursal sucursal;
     
+    @OneToMany(mappedBy="egreso")
+    @JsonManagedReference(value="pagos")
+    private List<Pago> pagos;
+    
     public Egreso() {
 
     }
