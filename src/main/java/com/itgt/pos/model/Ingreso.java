@@ -1,6 +1,7 @@
 package com.itgt.pos.model;
 
 import java.sql.Date;
+import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.OneToMany;
@@ -60,6 +63,9 @@ public class Ingreso {
     @ManyToOne
     @JoinColumn(name="id_sucursal")
     private Sucursal sucursal;
+    
+    @CreatedDate
+    private Instant createdDate;
     
     public Ingreso() {
 
