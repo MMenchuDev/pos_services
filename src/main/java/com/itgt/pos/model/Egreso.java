@@ -58,6 +58,10 @@ public class Egreso {
     @JsonManagedReference
     private List<DetalleEgreso> items;
     
+    @ManyToOne
+    @JoinColumn(name="id_sucursal")
+    private Sucursal sucursal;
+    
     public Egreso() {
 
     }
@@ -149,5 +153,13 @@ public class Egreso {
 	public void setItems(List<DetalleEgreso> items) {
 		this.items = items;
 	}
-            
+
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+           
 }
