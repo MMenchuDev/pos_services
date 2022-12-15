@@ -67,6 +67,9 @@ public class Ingreso {
     @CreatedDate
     private Instant createdDate;
     
+    @Column(name = "fecha_ingreso")
+    private Date fechaingreso;
+    
     public Ingreso() {
 
     }
@@ -167,8 +170,13 @@ public class Ingreso {
 
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
-	}   
-	
-	
-	
+	}
+
+	public Date getFechaingreso() {
+		return fechaingreso;
+	}
+
+	public void setFechaingreso(Date fechaingreso) {
+		this.fechaingreso = fechaingreso;
+	}
 }
