@@ -58,13 +58,15 @@ public class Egreso {
     @JsonManagedReference
     private List<DetalleEgreso> items;
     
-    @ManyToOne
-    @JoinColumn(name="id_sucursal")
-    private Sucursal sucursal;
-    
     @OneToMany(mappedBy="egreso")
     @JsonManagedReference(value="pagos")
     private List<Pago> pagos;
+    
+    @Column(name = "fecha_egreso")
+    private Date fechaegreso;
+    
+    @Column(name = "tipo_pago")
+    private int tipopago;
     
     public Egreso() {
 
@@ -158,12 +160,19 @@ public class Egreso {
 		this.items = items;
 	}
 
-	public Sucursal getSucursal() {
-		return sucursal;
+	public Date getFechaegreso() {
+		return fechaegreso;
 	}
 
-	public void setSucursal(Sucursal sucursal) {
-		this.sucursal = sucursal;
+	public void setFechaegreso(Date fechaegreso) {
+		this.fechaegreso = fechaegreso;
 	}
-           
+
+	public int getTipopago() {
+		return tipopago;
+	}
+
+	public void setTipopago(int tipopago) {
+		this.tipopago = tipopago;
+	}
 }
