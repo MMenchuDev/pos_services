@@ -68,6 +68,9 @@ public class Egreso {
     @Column(name = "tipo_pago")
     private int tipopago;
     
+    @Column(name = "pago_pendiente")
+    private int pagopendiente;
+    
     public Egreso() {
 
     }
@@ -175,4 +178,21 @@ public class Egreso {
 	public void setTipopago(int tipopago) {
 		this.tipopago = tipopago;
 	}
+
+	public List<Pago> getPagos() {
+		return pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
+	}
+
+	public int getPagopendiente() {
+		return pagopendiente;
+	}
+
+	public void setPagopendiente(int pagopendiente) {
+		this.pagopendiente = pagopendiente;
+	}
+	
 }

@@ -26,9 +26,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itgt.pos.model.Articulo;
 import com.itgt.pos.model.DetalleEgreso;
 import com.itgt.pos.model.Egreso;
+import com.itgt.pos.model.Pago;
 import com.itgt.pos.service.ArticuloService;
 import com.itgt.pos.service.DetalleEgresoService;
 import com.itgt.pos.service.EgresoService;
+import com.itgt.pos.service.PagoService;
 
 @CrossOrigin
 @RestController
@@ -40,6 +42,8 @@ public class EgresoController {
 	DetalleEgresoService serviceExt;
 	@Autowired
 	ArticuloService serviceExtDos;
+	@Autowired
+	PagoService serviceTres;
 	
 	HashMap<String, Object> mapG = new HashMap<String, Object>();
 	List<Egreso> dataG = new ArrayList<>();
@@ -89,13 +93,19 @@ public class EgresoController {
 			Egreso newItem = service.addItem(item);
 			// GUARDO EL DETALLE
 			for (DetalleEgreso i : item.getItems()) {
-				i.setId(newItem.getId());
+				i.setEgreso(newItem);
 				serviceExt.addItem(i);
 				
 				Articulo element = serviceExtDos.getItemById(i.getArticulo().getId());
 				element.setExistencia(element.getExistencia() - i.getCantidad());
 				serviceExtDos.updItem(element);	
 			}
+			
+			for(Pago i : item.getPagos()) {
+				i.setEgreso(newItem);
+				serviceTres.addItem(i);
+			}
+			
 			// OBTENER EL ENCABEZADO Y DETALLE GUARDADO
 			newItem = service.getItemById(newItem.getId());
 			dataG.add(newItem);

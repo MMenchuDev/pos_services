@@ -34,7 +34,7 @@ public class Pago {
     private float saldo;
     
     @Column(name = "observaciones")
-    private float observaciones;
+    private String observaciones;
     
     
     @ManyToOne(fetch=FetchType.LAZY)
@@ -100,12 +100,12 @@ public class Pago {
 	}
 
 
-	public float getObservaciones() {
+	public String getObservaciones() {
 		return observaciones;
 	}
 
 
-	public void setObservaciones(float observaciones) {
+	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
 
