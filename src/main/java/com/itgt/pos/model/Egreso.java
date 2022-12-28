@@ -69,7 +69,7 @@ public class Egreso {
     private int tipopago;
     
     @Column(name = "pago_pendiente")
-    private int pagopendiente;
+    private float pagopendiente;
     
     public Egreso() {
 
@@ -187,11 +187,11 @@ public class Egreso {
 		this.pagos = pagos;
 	}
 
-	public int getPagopendiente() {
+	public float getPagopendiente() {
 		return pagopendiente;
 	}
 
-	public void setPagopendiente(int pagopendiente) {
+	public void setPagopendiente(float pagopendiente) {
 		this.pagopendiente = pagopendiente;
 	}
 	

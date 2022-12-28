@@ -8,12 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.itgt.pos.manager.EgresoRepository;
 import com.itgt.pos.model.Egreso;
+import com.itgt.pos.model.Pago;
+import com.itgt.pos.model.Egreso;
 
 @Service
 public class EgresoService {
 	
 	@Autowired
 	private EgresoRepository repo;
+	
+	@Autowired
+	PagoService serviceTres;
 
 	public List<Egreso> getAll() throws Exception{
 		List<Egreso> items = new ArrayList<Egreso>();
@@ -52,4 +57,27 @@ public class EgresoService {
 			throw new Exception(ex.getMessage());
 		}
 	}	
+	
+	public List<Egreso> getEgresosCredito(int param, String nit, float paramtwo) throws Exception{
+		List<Egreso> items = new ArrayList<Egreso>();
+		try {
+			items = repo.findByPersonaNodocumentoAndTipopagoAndPagopendienteGreaterThan(nit, param, paramtwo);
+			return items;
+		} catch(Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public Egreso updItem(Egreso data) throws Exception{
+		Egreso item;
+		try {
+			item = repo.save(data);
+			for(Pago i : data.getPagos()) {
+				serviceTres.addItem(i);
+			}
+		} catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
+	}
 }
