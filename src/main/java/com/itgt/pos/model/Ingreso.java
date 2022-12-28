@@ -27,8 +27,8 @@ public class Ingreso {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(name = "tipo_comprobante")
-    private int tipo_comprobante;
+    @Column(name = "tipoComprobante")
+    private int tipoComprobante;
     
     @Column(name = "serie_doc")
     private String serie_doc;
@@ -82,12 +82,12 @@ public class Ingreso {
         this.id = id;
     }
 
-    public int getTipo_comprobante() {
-        return tipo_comprobante;
+    public int gettipoComprobante() {
+        return tipoComprobante;
     }
 
-    public void setTipo_comprobante(int tipo_comprobante) {
-        this.tipo_comprobante = tipo_comprobante;
+    public void settipoComprobante(int tipoComprobante) {
+        this.tipoComprobante = tipoComprobante;
     }
 
     public String getSerie_doc() {

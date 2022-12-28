@@ -190,5 +190,21 @@ public class EgresoController {
 	    		}
 	    	return response;
 	    }
+	    
+		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/egresosFechaActual")
+		public ResponseEntity<?> getAllItems(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante) {
+			ResponseEntity<?> response;
+			try {
+				dataG.clear();
+				dataG = service.getByEstado(estado, tipoComprobante);
+				mapG.put("id", dataG.size());
+				mapG.put("msj", "Datos obtenidos exitosamente");
+				mapG.put("data", dataG);
+				response = ResponseEntity.ok(mapG);
+			} catch (Exception ex) {
+				response = new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			return response;
+		}
 	  
 }

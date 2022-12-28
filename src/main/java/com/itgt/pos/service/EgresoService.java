@@ -1,6 +1,7 @@
 package com.itgt.pos.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +80,18 @@ public class EgresoService {
 			throw new Exception(ex.getMessage());
 		}
 		return item;
+	}
+	
+	
+	public List<Egreso> getByEstado(int estado, int tipoComprobante) throws Exception{
+		List<Egreso> items = new ArrayList<Egreso>();
+		try {
+			Date currentDate = new Date();
+			System.out.println(currentDate);
+			items = repo.findByEstadoAndTipoComprobanteAndFechaegreso(estado,1, currentDate);	
+		}catch(Exception ex) { 
+			throw new Exception(ex.getMessage());
+		}
+		return items;
 	}
 }
