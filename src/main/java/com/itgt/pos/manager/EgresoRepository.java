@@ -12,4 +12,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long>{
 
 	List<Egreso> findByEstadoAndTipoComprobanteAndFechaegreso(int estado, int tipoComprobante, Date fechaegreso);
 
+	List<Egreso> findByEstadoAndTipoComprobanteAndFechaegresoBetween(int estado, int tipoComprobante, Date start, Date end);
+
+	
 }

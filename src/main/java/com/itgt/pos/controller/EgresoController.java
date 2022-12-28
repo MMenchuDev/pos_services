@@ -197,7 +197,24 @@ public class EgresoController {
 			ResponseEntity<?> response;
 			try {
 				dataG.clear();
-				dataG = service.getByEstado(estado, tipoComprobante);
+				dataG = service.getByEstadoTipoComprobanteCurrentDate(estado, tipoComprobante);
+				mapG.put("id", dataG.size());
+				Date currentDate = new Date();
+				mapG.put("msj", "Datos obtenidos exitosamente"+currentDate);
+				mapG.put("data", dataG);
+				response = ResponseEntity.ok(mapG);
+			} catch (Exception ex) {
+				response = new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			return response;
+		}
+		
+		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/fechaInicio/{fechainicio}/fechaFin/{fechafin}")
+		public ResponseEntity<?> getByEstadoTipoComprobanteCurrentDate(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante, @PathVariable("fechainicio") String fechainicio, @PathVariable("fechafin") String fechafin) {
+			ResponseEntity<?> response;
+			try {
+				dataG.clear();
+				dataG = service.getByEstadoTipoComprobanteBetwen(estado, tipoComprobante, fechainicio, fechafin);
 				mapG.put("id", dataG.size());
 				Date currentDate = new Date();
 				mapG.put("msj", "Datos obtenidos exitosamente"+currentDate);

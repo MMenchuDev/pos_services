@@ -1,5 +1,6 @@
 package com.itgt.pos.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,11 +84,24 @@ public class EgresoService {
 	}
 	
 	
-	public List<Egreso> getByEstado(int estado, int tipoComprobante) throws Exception{
+	public List<Egreso> getByEstadoTipoComprobanteCurrentDate(int estado, int tipoComprobante) throws Exception{
 		List<Egreso> items = new ArrayList<Egreso>();
 		try {
 			Date currentDate = new Date();
 			items = repo.findByEstadoAndTipoComprobanteAndFechaegreso(estado,1, currentDate);	
+		}catch(Exception ex) { 
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
+	
+	public List<Egreso> getByEstadoTipoComprobanteBetwen(int estado, int tipoComprobante, String start, String end) throws Exception{
+		List<Egreso> items = new ArrayList<Egreso>();
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date startDate = sdf.parse(start);
+			Date endDate = sdf.parse(end);
+			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoBetween(estado,1, startDate, endDate);	
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());
 		}
