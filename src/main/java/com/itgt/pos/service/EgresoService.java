@@ -87,7 +87,6 @@ public class EgresoService {
 		List<Egreso> items = new ArrayList<Egreso>();
 		try {
 			Date currentDate = new Date();
-			System.out.println(currentDate);
 			items = repo.findByEstadoAndTipoComprobanteAndFechaegreso(estado,1, currentDate);	
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());

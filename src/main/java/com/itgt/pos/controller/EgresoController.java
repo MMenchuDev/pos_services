@@ -2,6 +2,7 @@ package com.itgt.pos.controller;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -198,7 +199,8 @@ public class EgresoController {
 				dataG.clear();
 				dataG = service.getByEstado(estado, tipoComprobante);
 				mapG.put("id", dataG.size());
-				mapG.put("msj", "Datos obtenidos exitosamente");
+				Date currentDate = new Date();
+				mapG.put("msj", "Datos obtenidos exitosamente"+currentDate);
 				mapG.put("data", dataG);
 				response = ResponseEntity.ok(mapG);
 			} catch (Exception ex) {
