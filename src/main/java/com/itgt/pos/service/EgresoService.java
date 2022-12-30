@@ -107,4 +107,17 @@ public class EgresoService {
 		}
 		return items;
 	}
+	
+	
+	public List<Egreso> getEgresosCreditoAll(int param, float paramtwo) throws Exception{
+		List<Egreso> items = new ArrayList<Egreso>();
+		try {
+			items = repo.findByTipopagoAndPagopendienteGreaterThan(param, paramtwo);
+			return items;
+		} catch(Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	
 }

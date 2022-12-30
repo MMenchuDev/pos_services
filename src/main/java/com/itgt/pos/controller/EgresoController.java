@@ -108,7 +108,6 @@ public class EgresoController {
 			mapG.put("data", dataG);
 			response = ResponseEntity.ok(mapG); 
 		}
-		
 		return response;
 	}
 
@@ -225,5 +224,30 @@ public class EgresoController {
 			}
 			return response;
 		}
-	  
+
+		@GetMapping("creditos")
+		public ResponseEntity<?> getEgresos(){
+			ResponseEntity<?> response;
+			try {
+				dataG.clear();
+				dataG = service.getEgresosCreditoAll(0, 0);
+				if (dataG.size() > 0) {
+					mapG.put("id", 1);
+					mapG.put("msj", "Datos obtenidos exitosamente");
+					mapG.put("data", dataG);	
+				}else {
+					mapG.put("id", -1);
+					mapG.put("msj", "Creditos no disponibles para el cliente: ");
+					mapG.put("data", dataG);				
+				}
+				response = ResponseEntity.ok(mapG);
+			} catch (Exception ex) {
+				mapG.put("id", -1);
+				mapG.put("msj", "Error al obtener los datos");
+				mapG.put("data", dataG);
+				response = ResponseEntity.ok(mapG); 
+			}
+			return response;
+		}		
+		
 }
