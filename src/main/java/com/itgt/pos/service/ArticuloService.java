@@ -78,7 +78,7 @@ public class ArticuloService {
 	public List<Articulo> getItemByEstadoActivo() throws Exception{
 		List<Articulo> items = new ArrayList<Articulo>();
 		try {
-			items = repo.findByEstado(1);
+			items = repo.findByEstadoOrderByExistenciaAsc(1);
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			throw new Exception(ex.getMessage());

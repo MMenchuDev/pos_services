@@ -2,6 +2,8 @@ package com.itgt.pos.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "tt_usuario")
 public class Usuario {
@@ -21,6 +23,11 @@ public class Usuario {
   
   @Column(name = "id_estado")
   private String id_estado;
+  
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "sucursal_id", referencedColumnName = "id")
+  @JsonManagedReference
+  private Sucursal sucursal;
 
   public Usuario() {
 
@@ -67,6 +74,20 @@ public class Usuario {
   public void setId_estado(String id_estado) {
 	this.id_estado = id_estado;
   }
+
+  
+  
+public Sucursal getSucursal() {
+	return sucursal;
+}
+
+public void setSucursal(Sucursal sucursal) {
+	this.sucursal = sucursal;
+}
+
+public void setId(long id) {
+	this.id = id;
+}
 
 @Override
   public String toString() {

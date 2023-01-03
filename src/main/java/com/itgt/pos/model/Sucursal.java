@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "sucursal")
@@ -29,6 +32,10 @@ public class Sucursal {
     
     @Column(name = "estado")
     private int estado;
+    
+    @OneToOne(mappedBy = "sucursal")
+    @JsonBackReference
+    private Usuario usuario;
 
 	public Sucursal() {
 		
@@ -80,6 +87,14 @@ public class Sucursal {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
     
     
