@@ -75,7 +75,7 @@ public class ArticuloService {
 		}
 		return item;
 	}
-	public List<Articulo> getItemByEstado() throws Exception{
+	public List<Articulo> getItemByEstadoActivo() throws Exception{
 		List<Articulo> items = new ArrayList<Articulo>();
 		try {
 			items = repo.findByEstado(1);

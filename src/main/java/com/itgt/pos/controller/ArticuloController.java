@@ -137,12 +137,12 @@ public class ArticuloController {
         	return new ResponseEntity<>(map, HttpStatus.OK);
         }
     }    
-    @GetMapping("ventas")
-    public ResponseEntity<?> getArticuloVentas(){
+    @GetMapping("activos")
+    public ResponseEntity<?> getItemByEstado(){
         HashMap<String, Object> map = new HashMap<String, Object>();
         try {
 			dataG.clear();
-			dataG = service.getItemByEstado();
+			dataG = service.getItemByEstadoActivo();
             if(dataG.size() > 0) {
             	map.put("id", dataG.size());
             	map.put("msj", "Elemento encontrados");
