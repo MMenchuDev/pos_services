@@ -191,12 +191,12 @@ public class EgresoController {
 	    	return response;
 	    }
 	    
-		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/egresosFechaActual")
-		public ResponseEntity<?> getAllItems(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante) {
+		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/sucursal/{idSucursal}/egresosFechaActual")
+		public ResponseEntity<?> getAllItems(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante, @PathVariable("idSucursal") Long idSucursal) {
 			ResponseEntity<?> response;
 			try {
 				dataG.clear();
-				dataG = service.getByEstadoTipoComprobanteCurrentDate(estado, tipoComprobante);
+				dataG = service.getByEstadoTipoComprobanteCurrentDate(estado, tipoComprobante, idSucursal);
 				mapG.put("id", dataG.size());
 				Date currentDate = new Date();
 				mapG.put("msj", "Datos obtenidos exitosamente"+currentDate);
@@ -208,12 +208,12 @@ public class EgresoController {
 			return response;
 		}
 		
-		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/fechaInicio/{fechainicio}/fechaFin/{fechafin}")
-		public ResponseEntity<?> getByEstadoTipoComprobanteCurrentDate(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante, @PathVariable("fechainicio") String fechainicio, @PathVariable("fechafin") String fechafin) {
+		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/fechaInicio/{fechainicio}/fechaFin/{fechafin}/sucursal/{idSucursal}")
+		public ResponseEntity<?> getByEstadoTipoComprobanteCurrentDate(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante, @PathVariable("fechainicio") String fechainicio, @PathVariable("fechafin") String fechafin, @PathVariable("idSucursal") Long idSucrusal) {
 			ResponseEntity<?> response;
 			try {
 				dataG.clear();
-				dataG = service.getByEstadoTipoComprobanteBetwen(estado, tipoComprobante, fechainicio, fechafin);
+				dataG = service.getByEstadoTipoComprobanteBetwen(estado, tipoComprobante, fechainicio, fechafin, idSucrusal);
 				mapG.put("id", dataG.size());
 				Date currentDate = new Date();
 				mapG.put("msj", "Datos obtenidos exitosamente"+currentDate);

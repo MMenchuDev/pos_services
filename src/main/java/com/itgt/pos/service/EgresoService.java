@@ -84,24 +84,24 @@ public class EgresoService {
 	}
 	
 	
-	public List<Egreso> getByEstadoTipoComprobanteCurrentDate(int estado, int tipoComprobante) throws Exception{
+	public List<Egreso> getByEstadoTipoComprobanteCurrentDate(int estado, int tipoComprobante, Long id) throws Exception{
 		List<Egreso> items = new ArrayList<Egreso>();
 		try {
 			Date currentDate = new Date();
-			items = repo.findByEstadoAndTipoComprobanteAndFechaegreso(estado,1, currentDate);	
+			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoAndUsuarioSucursalId(estado,1, currentDate, id);	
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());
 		}
 		return items;
 	}
 	
-	public List<Egreso> getByEstadoTipoComprobanteBetwen(int estado, int tipoComprobante, String start, String end) throws Exception{
+	public List<Egreso> getByEstadoTipoComprobanteBetwen(int estado, int tipoComprobante, String start, String end, Long idSucursal) throws Exception{
 		List<Egreso> items = new ArrayList<Egreso>();
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date startDate = sdf.parse(start);
 			Date endDate = sdf.parse(end);
-			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoBetween(estado,1, startDate, endDate);	
+			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoBetweenAndUsuarioSucursalId(estado,1, startDate, endDate, idSucursal);	
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());
 		}
