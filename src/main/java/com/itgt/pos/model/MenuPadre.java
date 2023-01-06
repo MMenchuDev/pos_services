@@ -13,22 +13,24 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "permiso")
-public class Permiso {
+@Table(name = "menu_padre")
+public class MenuPadre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
     @Column(name = "nombre")
     private String nombre;
-    
-    @OneToMany(mappedBy="permiso")
-    @JsonManagedReference
-    private List<MenuPermiso> menu;
-    
-    public Permiso() {
 
-    }
+    @Column(name = "estado")
+    private int estado;
+    
+    @OneToMany(mappedBy="menupadre")
+    @JsonManagedReference
+    private List<MenuHijo> menuhijos;
+
+	public MenuPadre() {
+	}
 
 	public long getId() {
 		return id;
@@ -45,6 +47,15 @@ public class Permiso {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-    
-    
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
+	
+	
 }
