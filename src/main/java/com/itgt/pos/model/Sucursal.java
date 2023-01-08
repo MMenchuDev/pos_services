@@ -33,9 +33,9 @@ public class Sucursal {
     @Column(name = "estado")
     private int estado;
     
-    @OneToOne(mappedBy = "sucursal")
+    /*@OneToOne(mappedBy = "sucursal")
     @JsonBackReference
-    private Usuario usuario;
+    private Usuario usuario;*/
 
 	public Sucursal() {
 		
@@ -88,14 +88,4 @@ public class Sucursal {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-    
-    
 }

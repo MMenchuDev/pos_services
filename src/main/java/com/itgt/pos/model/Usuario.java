@@ -24,9 +24,8 @@ public class Usuario {
   @Column(name = "id_estado")
   private String id_estado;
   
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "sucursal_id", referencedColumnName = "id")
-  @JsonManagedReference
+  @ManyToOne
+  @JoinColumn(name = "sucursal_id")
   private Sucursal sucursal;
 
   public Usuario() {
@@ -74,12 +73,10 @@ public class Usuario {
   public void setId_estado(String id_estado) {
 	this.id_estado = id_estado;
   }
-
   
-  
-public Sucursal getSucursal() {
-	return sucursal;
-}
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
 
 public void setSucursal(Sucursal sucursal) {
 	this.sucursal = sucursal;

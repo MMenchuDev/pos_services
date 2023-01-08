@@ -24,4 +24,21 @@ public class UsuarioPermisoService {
 		}
 		return item;
 	}	
+	public UsuarioPermiso addItem(UsuarioPermiso data) throws Exception{
+		UsuarioPermiso item = new UsuarioPermiso();
+		try {
+			item = repo.save(data);
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return item;
+	}
+	
+	public void delItem(Long id) throws Exception{
+		try {
+			repo.deleteById(id);
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+	}	
 }

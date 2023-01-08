@@ -25,6 +25,12 @@ public class MenuHijo {
     @Column(name = "estado")
     private int estado;
     
+    @Column(name = "classname")
+    private String classname;
+    
+    @Column(name = "path")
+    private String path;
+    
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_menu_padre")
     @JsonBackReference
@@ -56,5 +62,30 @@ public class MenuHijo {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+
+	public MenuPadre getMenupadre() {
+		return menupadre;
+	}
+
+	public void setMenupadre(MenuPadre menupadre) {
+		this.menupadre = menupadre;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}   
+	
 }

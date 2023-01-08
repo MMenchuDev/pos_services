@@ -25,6 +25,9 @@ public class MenuPadre {
     @Column(name = "estado")
     private int estado;
     
+    @Column(name = "classname")
+    private String classname;
+    
     @OneToMany(mappedBy="menupadre")
     @JsonManagedReference
     private List<MenuHijo> menuhijos;
@@ -55,7 +58,20 @@ public class MenuPadre {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	
-	
-	
+
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+
+	public List<MenuHijo> getMenuhijos() {
+		return menuhijos;
+	}
+
+	public void setMenuhijos(List<MenuHijo> menuhijos) {
+		this.menuhijos = menuhijos;
+	}
 }
