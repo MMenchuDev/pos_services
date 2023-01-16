@@ -13,7 +13,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long>{
 	
 	List<Egreso> findByTipopagoAndPagopendienteGreaterThan(int tipopago, float pagopendiente);
 
-	List<Egreso> findByEstadoAndTipoComprobanteAndFechaegresoAndUsuarioSucursalId(int estado, int tipoComprobante, Date fechaegreso, Long id);
+	List<Egreso> findByEstadoAndTipoComprobanteAndFechaegresoAndSucursalId(int estado, int tipoComprobante, Date fechaegreso, Long id);
 
 	List<Egreso> findByEstadoAndTipoComprobanteAndFechaegresoBetweenAndSucursalId(int estado, int tipoComprobante, Date start, Date end, Long id);
 	
