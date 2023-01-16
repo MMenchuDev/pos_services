@@ -47,7 +47,17 @@ public class Articulo {
     @ManyToOne
     @JoinColumn(name="id_presenacion")
     private Presentacion presentacion;    
+    
+    @Column(name = "marca")
+    private String marca;
+    
+    @Column(name = "stokminimo")
+    private int stokminimo;
 
+    
+    @Column(name = "modelo")
+    private String modelo;
+    
 	public Articulo() {
 		
 	}
@@ -138,6 +148,30 @@ public class Articulo {
 
 	public void setPrecio_compra(float precio_compra) {
 		this.precio_compra = precio_compra;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public int getStokminimo() {
+		return stokminimo;
+	}
+
+	public void setStokminimo(int stokminimo) {
+		this.stokminimo = stokminimo;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 	
 
