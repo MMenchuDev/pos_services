@@ -8,5 +8,5 @@ import com.itgt.pos.model.UsuarioPermiso;
 
 public interface UsuarioPermisoRepository extends JpaRepository<UsuarioPermiso, Long>{
 	
-	List<UsuarioPermiso> findByUsuarioIdAndEstado(Long id, int estado);
+	List<UsuarioPermiso> findByUsuarioIdAndEstadoOrderByPermisoDesc(Long id, int estado);
 }

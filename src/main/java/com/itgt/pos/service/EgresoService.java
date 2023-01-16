@@ -101,7 +101,7 @@ public class EgresoService {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date startDate = sdf.parse(start);
 			Date endDate = sdf.parse(end);
-			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoBetweenAndUsuarioSucursalId(estado,1, startDate, endDate, idSucursal);	
+			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoBetweenAndSucursalId(estado,1, startDate, endDate, idSucursal);	
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());
 		}

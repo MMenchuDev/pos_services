@@ -71,6 +71,10 @@ public class Egreso {
     @Column(name = "pago_pendiente")
     private float pagopendiente;
     
+    @ManyToOne
+    @JoinColumn(name = "id_sucursal")
+    private Sucursal sucursal;
+    
     public Egreso() {
 
     }
@@ -194,5 +198,12 @@ public class Egreso {
 	public void setPagopendiente(float pagopendiente) {
 		this.pagopendiente = pagopendiente;
 	}
-	
+
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
 }

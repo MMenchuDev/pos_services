@@ -18,7 +18,7 @@ public class UsuarioPermisoService {
 	public List<UsuarioPermiso> getItemByUsuarioId(Long id, int estado) throws Exception{
 		List<UsuarioPermiso> item;
 		try {
-			item = repo.findByUsuarioIdAndEstado(id, estado);
+			item = repo.findByUsuarioIdAndEstadoOrderByPermisoDesc(id, estado);
 		}catch(Exception ex) {
 			throw new Exception(ex.getMessage());
 		}
