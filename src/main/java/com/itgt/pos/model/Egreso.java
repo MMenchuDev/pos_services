@@ -75,6 +75,9 @@ public class Egreso {
     @JoinColumn(name = "id_sucursal")
     private Sucursal sucursal;
     
+    @Column(name = "comentario")
+    private String comentario;
+    
     public Egreso() {
 
     }
@@ -206,4 +209,13 @@ public class Egreso {
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
 	}
+
+	public String getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+
 }
