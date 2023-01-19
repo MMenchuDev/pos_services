@@ -63,4 +63,15 @@ public class UsuarioService {
 			throw new Exception(ex.getMessage());
 		}
 	}	
+	
+	
+	public List<Usuario> getItemByEstadoUsuarioPassword(String usuario, String password) throws Exception{
+		List<Usuario> items = new ArrayList<Usuario>();
+		try {
+			items = repo.findByEstadoAndUsuarioAndPassword("1", usuario, password);
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
 }

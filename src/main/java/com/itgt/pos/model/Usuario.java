@@ -22,7 +22,7 @@ public class Usuario {
   private String password;
   
   @Column(name = "id_estado")
-  private String id_estado;
+  private String estado;
   
   @ManyToOne
   @JoinColumn(name = "sucursal_id")
@@ -66,14 +66,15 @@ public class Usuario {
     this.password = password;
   }
 
-  public String getId_estado() {
-	return id_estado;
-  }
 
-  public void setId_estado(String id_estado) {
-	this.id_estado = id_estado;
-  }
-  
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public Sucursal getSucursal() {
 		return sucursal;
 	}

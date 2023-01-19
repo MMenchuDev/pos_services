@@ -125,5 +125,22 @@ public class UsuarioController {
       return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+  
+  @GetMapping("usuario/{usuario}/password/{password}")
+  public ResponseEntity<?> getUsuarioByEsadoUsuarioPassword(@PathVariable("usuario") String usuario, @PathVariable("password") String password) {
+	  ResponseEntity<?> response;
+    try {
+      dataG.clear();
+      dataG = service.getItemByEstadoUsuarioPassword(usuario, password);
+      mapG.put("id", dataG.size());
+      mapG.put("msj", "Datos obtenidos exitosamente");
+      mapG.put("data", dataG);
+      response = ResponseEntity.ok(mapG);
+    } catch (Exception Ex) {
+        response = new ResponseEntity<>(Ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    
+    return response;
+  }
 
 }
