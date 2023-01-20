@@ -31,6 +31,9 @@ public class MenuPadre {
     @OneToMany(mappedBy="menupadre")
     @JsonManagedReference
     private List<MenuHijo> menuhijos;
+    
+    @Column(name = "orden")
+    private int orden;
 
 	public MenuPadre() {
 	}
@@ -74,4 +77,14 @@ public class MenuPadre {
 	public void setMenuhijos(List<MenuHijo> menuhijos) {
 		this.menuhijos = menuhijos;
 	}
+
+	public int getOrden() {
+		return orden;
+	}
+
+	public void setOrden(int orden) {
+		this.orden = orden;
+	}
+	
+	
 }

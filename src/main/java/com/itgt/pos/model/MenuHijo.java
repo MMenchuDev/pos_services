@@ -36,6 +36,9 @@ public class MenuHijo {
     @JsonBackReference
     private MenuPadre menupadre;
 
+    @Column(name = "segundo_orden")
+    private int segundoOrden;
+    
 	public MenuHijo() {
 		
 	}
@@ -86,6 +89,12 @@ public class MenuHijo {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public int getSegundoOrden() {
+		return segundoOrden;
+	}
+	public void setSegundoOrden(int segundoOrden) {
+		this.segundoOrden = segundoOrden;
 	}   
-	
 }
