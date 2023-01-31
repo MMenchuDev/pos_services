@@ -32,5 +32,17 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long>{
     		@Param("tipocomprobante") int tipoComprobante,
     		@Param("idsucursal") Long id
     		);
+
+    @Query("select e from Egreso e, Sucursal s where DATE_FORMAT(e.fechaegreso,'%Y-%m-%d') BETWEEN :start AND :end\r\n"
+    		+ "and e.estado = :estado\r\n"
+    		+ "and e.tipoComprobante = :tipocomprobante\r\n"
+    		+ "and s.id = :idsucursal")
+    List<Egreso> findAllWithFechaegresoBetween(
+    		@Param("start") String start,
+    		@Param("end") String end,
+    		@Param("estado") int estado,
+    		@Param("tipocomprobante") int tipoComprobante,
+    		@Param("idsucursal") Long id
+    		);
     
 }

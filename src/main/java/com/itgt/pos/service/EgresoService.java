@@ -94,7 +94,6 @@ public class EgresoService {
 	        // Use format method on SimpleDateFormat
 	        String formattedDateStr = dmyFormat.format(currentDate);
 	        //System.out.println("Formatted Date in String format: "+formattedDateStr);
-			//items = repo.findByEstadoAndTipoComprobanteAndFechaegresoAndSucursalId(estado,1, currentDate, id);
 			items = repo.findAllWithFechaegreso(formattedDateStr,estado,tipopago,tipoComprobante,id);
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());
@@ -108,7 +107,9 @@ public class EgresoService {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date startDate = sdf.parse(start);
 			Date endDate = sdf.parse(end);
-			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoBetweenAndSucursalId(estado,1, startDate, endDate, idSucursal);	
+
+			items = repo.findAllWithFechaegresoBetween(sdf.format(startDate), sdf.format(endDate),estado,tipoComprobante,idSucursal);
+
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());
 		}
