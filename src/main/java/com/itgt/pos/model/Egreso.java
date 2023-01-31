@@ -1,6 +1,7 @@
 package com.itgt.pos.model;
 
 import java.sql.Date;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,7 @@ public class Egreso {
     private long id;
     
     @Column(name = "tipoComprobante")
-    private int tipoComprobante;
+    private int tipoComprobante; 
     
     @Column(name = "serie_doc")
     private String serie_doc;
@@ -63,7 +64,7 @@ public class Egreso {
     private List<Pago> pagos;
     
     @Column(name = "fecha_egreso")
-    private Date fechaegreso;
+    private OffsetDateTime fechaegreso;
     
     @Column(name = "tipo_pago")
     private int tipopago;
@@ -170,11 +171,11 @@ public class Egreso {
 		this.items = items;
 	}
 
-	public Date getFechaegreso() {
+	public OffsetDateTime getFechaegreso() {
 		return fechaegreso;
 	}
 
-	public void setFechaegreso(Date fechaegreso) {
+	public void setFechaegreso(OffsetDateTime fechaegreso) {
 		this.fechaegreso = fechaegreso;
 	}
 

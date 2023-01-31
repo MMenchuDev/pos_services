@@ -84,11 +84,18 @@ public class EgresoService {
 	}
 	
 	
-	public List<Egreso> getByEstadoTipoComprobanteCurrentDate(int estado, int tipoComprobante, Long id) throws Exception{
+	public List<Egreso> getByEstadoTipoComprobanteCurrentDate(int estado, int tipoComprobante, Long id, int tipopago) throws Exception{
 		List<Egreso> items = new ArrayList<Egreso>();
 		try {
 			Date currentDate = new Date();
-			items = repo.findByEstadoAndTipoComprobanteAndFechaegresoAndSucursalId(estado,1, currentDate, id);	
+	        // Specify format as "yyyy-MM-dd"
+	        SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
+	 
+	        // Use format method on SimpleDateFormat
+	        String formattedDateStr = dmyFormat.format(currentDate);
+	        //System.out.println("Formatted Date in String format: "+formattedDateStr);
+			//items = repo.findByEstadoAndTipoComprobanteAndFechaegresoAndSucursalId(estado,1, currentDate, id);
+			items = repo.findAllWithFechaegreso(formattedDateStr,estado,tipopago,tipoComprobante,id);
 		}catch(Exception ex) { 
 			throw new Exception(ex.getMessage());
 		}
@@ -119,5 +126,13 @@ public class EgresoService {
 		}
 	}
 	
-	
+	public List<Egreso> getEgresosWithDate(String datestring) throws Exception{
+		List<Egreso> items = new ArrayList<Egreso>();
+		try {
+			items = repo.findAllWithFechaegreso(datestring,1,1,1,(long)1);
+			return items;
+		} catch(Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
 }

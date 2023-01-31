@@ -191,12 +191,12 @@ public class EgresoController {
 	    	return response;
 	    }
 	    
-		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/sucursal/{idSucursal}/egresosFechaActual")
-		public ResponseEntity<?> getAllItems(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante, @PathVariable("idSucursal") Long idSucursal) {
+		@GetMapping("estado/{estado}/tipoComprobante/{tipoComprobante}/sucursal/{idSucursal}/tipopago/{tipopago}/egresosFechaActual")
+		public ResponseEntity<?> getAllItems(@PathVariable("estado") int estado, @PathVariable("tipoComprobante") int tipoComprobante, @PathVariable("idSucursal") Long idSucursal, @PathVariable("tipopago") int tipopago) {
 			ResponseEntity<?> response;
 			try {
 				dataG.clear();
-				dataG = service.getByEstadoTipoComprobanteCurrentDate(estado, tipoComprobante, idSucursal);
+				dataG = service.getByEstadoTipoComprobanteCurrentDate(estado, tipoComprobante, idSucursal, tipopago);
 				mapG.put("id", dataG.size());
 				Date currentDate = new Date();
 				mapG.put("msj", "Datos obtenidos exitosamente"+currentDate);
@@ -249,5 +249,31 @@ public class EgresoController {
 			}
 			return response;
 		}		
+		
+		
+		@GetMapping("dateexample/{datestring}/egresos")
+		public ResponseEntity<?> getEgresosByDate(@PathVariable("datestring") String datestring){
+			ResponseEntity<?> response;
+			try {
+				dataG.clear();
+				dataG = service.getEgresosWithDate(datestring);
+				if (dataG.size() > 0) {
+					mapG.put("id", 1);
+					mapG.put("msj", "Datos obtenidos exitosamente");
+					mapG.put("data", dataG);	
+				}else {
+					mapG.put("id", -1);
+					mapG.put("msj", "Creditos no disponibles para el cliente: ");
+					mapG.put("data", dataG);				
+				}
+				response = ResponseEntity.ok(mapG);
+			} catch (Exception ex) {
+				mapG.put("id", -1);
+				mapG.put("msj", "Error al obtener los datos");
+				mapG.put("data", dataG);
+				response = ResponseEntity.ok(mapG); 
+			}
+			return response;
+		}
 		
 }
