@@ -20,7 +20,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long>{
 	List<Egreso> findByEstadoAndTipoComprobanteAndFechaegresoBetweenAndSucursalId(int estado, int tipoComprobante, Date start, Date end, Long id);
 	
 	
-    @Query("select e from Egreso e, Sucursal s where DATE_FORMAT(e.fechaegreso,'%Y-%m-%d') = :fechaegreso\r\n"
+    @Query("select e from Egreso e inner join Sucursal s ON e.sucursal.id = s.id where DATE_FORMAT(e.fechaegreso,'%Y-%m-%d') = :fechaegreso\r\n"
     		+ "and e.estado = :estado\r\n"
     		+ "and e.tipopago = :tipopago\r\n" 
     		+ "and e.tipoComprobante = :tipocomprobante\r\n"
@@ -33,7 +33,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long>{
     		@Param("idsucursal") Long id
     		);
 
-    @Query("select e from Egreso e, Sucursal s where DATE_FORMAT(e.fechaegreso,'%Y-%m-%d') BETWEEN :start AND :end\r\n"
+    @Query("select e from Egreso e inner join Sucursal s ON e.sucursal.id = s.id where DATE_FORMAT(e.fechaegreso,'%Y-%m-%d') BETWEEN :start AND :end\r\n"
     		+ "and e.estado = :estado\r\n"
     		+ "and e.tipoComprobante = :tipocomprobante\r\n"
     		+ "and s.id = :idsucursal")
