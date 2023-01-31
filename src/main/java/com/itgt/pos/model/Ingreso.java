@@ -2,6 +2,7 @@ package com.itgt.pos.model;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -68,7 +69,7 @@ public class Ingreso {
     private Instant createdDate;
     
     @Column(name = "fecha_ingreso")
-    private Date fechaingreso;
+    private OffsetDateTime fechaingreso;
     
     public Ingreso() {
 
@@ -172,11 +173,11 @@ public class Ingreso {
 		this.sucursal = sucursal;
 	}
 
-	public Date getFechaingreso() {
+	public OffsetDateTime getFechaingreso() {
 		return fechaingreso;
 	}
 
-	public void setFechaingreso(Date fechaingreso) {
+	public void setFechaingreso(OffsetDateTime fechaingreso) {
 		this.fechaingreso = fechaingreso;
 	}
 }
