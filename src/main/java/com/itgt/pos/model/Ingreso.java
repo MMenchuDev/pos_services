@@ -69,7 +69,7 @@ public class Ingreso {
     private Instant createdDate;
     
     @Column(name = "fecha_ingreso")
-    private OffsetDateTime fechaingreso;
+    private OffsetDateTime fechaingreso; 
     
     public Ingreso() {
 
