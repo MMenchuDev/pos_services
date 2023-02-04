@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Egreso {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
+    private long id;  
+     
     @Column(name = "tipoComprobante")
     private int tipoComprobante; 
     
@@ -78,6 +78,12 @@ public class Egreso {
     
     @Column(name = "comentario")
     private String comentario;
+    
+    @Column(name = "pago_recibido")
+    private float pago;   
+    
+    @Column(name = "cambio")
+    private float cambio;
     
     public Egreso() {
 
@@ -218,5 +224,23 @@ public class Egreso {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
+
+	public float getPago() {
+		return pago;
+	}
+
+	public void setPagorecibido(float pago) {
+		this.pago = pago;
+	}
+
+	public float getCambio() {
+		return cambio;
+	}
+
+	public void setCambio(float cambio) {
+		this.cambio = cambio;
+	}
+	
+	
 
 }

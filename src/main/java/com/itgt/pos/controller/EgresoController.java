@@ -164,6 +164,12 @@ public class EgresoController {
 	      Egreso item = service.getItemById(id);
 	      for(DetalleEgreso i : item.getItems()){
 	    	  serviceExt.delItem(i.getId());
+			  Articulo element = serviceExtDos.getItemById(i.getArticulo().getId());
+			  element.setExistencia(element.getExistencia() + i.getCantidad());
+			  serviceExtDos.updItem(element);	
+	      }
+	      for(Pago i : item.getPagos()){
+	    	  serviceTres.delItem(i.getId());
 	      }
 	      service.delItem(id);
 	      map.put("id", 1);
