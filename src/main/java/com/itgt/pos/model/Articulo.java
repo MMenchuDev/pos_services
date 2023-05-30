@@ -58,6 +58,15 @@ public class Articulo {
     @Column(name = "modelo")
     private String modelo;
     
+    @Column(name = "monto_descuento")
+    private float montoDescuento;
+    
+    @Column(name = "porcentaje_descuento")
+    private int porcentajeDescuento;
+    
+    @Column(name = "tipo_descuento")
+    private int tipoDescuento;
+    
 	public Articulo() {
 		
 	}
@@ -172,6 +181,30 @@ public class Articulo {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public float getMontoDescuento() {
+		return montoDescuento;
+	}
+
+	public void setMontoDescuento(float montoDescuento) {
+		this.montoDescuento = montoDescuento;
+	}
+
+	public int getPorcentajeDescuento() {
+		return porcentajeDescuento;
+	}
+
+	public void setPorcentajeDescuento(int porcentajeDescuento) {
+		this.porcentajeDescuento = porcentajeDescuento;
+	}
+
+	public int getTipoDescuento() {
+		return tipoDescuento;
+	}
+
+	public void setTipoDescuento(int tipoDescuento) {
+		this.tipoDescuento = tipoDescuento;
 	}
 	
 
