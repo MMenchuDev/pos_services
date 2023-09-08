@@ -1,7 +1,9 @@
 package com.itgt.pos.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,4 +87,22 @@ public class ArticuloService {
 		}
 		return items;
 	}
+	
+	public float obtieneExistenciaProducto(int id, List<HashMap<String, Object>> ingresos) {
+		float existencia = 0;
+		ingresos.forEach((compra) -> {
+			@SuppressWarnings("unchecked")
+			List<HashMap<String, Object>> productos = (List<HashMap<String, Object>>) compra.get("items");
+			productos.forEach((producto) -> {
+				@SuppressWarnings("unchecked")
+				HashMap<String, Object> element = (HashMap<String, Object>) producto.get("articulo");
+				if(Integer.parseInt(element.get("id").toString()) == id){
+					System.out.println("Producto encontrado, cantidad: "+producto.get("cantidad"));
+				};
+				
+			});
+		});
+		return existencia;
+	}
+	
 }

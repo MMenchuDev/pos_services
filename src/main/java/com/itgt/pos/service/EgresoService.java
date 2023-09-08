@@ -32,6 +32,17 @@ public class EgresoService {
 		return items;
 	}
 	
+	
+	public List<Egreso> getAllByEstado(int idEstado) throws Exception{
+		List<Egreso> items = new ArrayList<Egreso>();
+		try {
+			items = repo.findByEstado(idEstado);	
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
+	
 	public Egreso getItemById(Long id) throws Exception{
 		Egreso item;
 		try {
@@ -41,6 +52,8 @@ public class EgresoService {
 		}
 		return item;
 	}
+	
+	
 	
 	public Egreso addItem(Egreso data) throws Exception{
 		Egreso item = new Egreso();

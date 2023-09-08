@@ -44,5 +44,5 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long>{
     		@Param("tipocomprobante") int tipoComprobante,
     		@Param("idsucursal") Long id
     		);
-    
+    List<Egreso> findByEstado(int estado);
 }

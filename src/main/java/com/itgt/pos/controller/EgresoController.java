@@ -65,6 +65,22 @@ public class EgresoController {
 		}
 		return response;
 	}
+	
+	@GetMapping("estado/{id}/all")
+	public ResponseEntity<?> getActiveItems(@PathVariable("id") int id) {
+		ResponseEntity<?> response;
+		try {
+			dataG.clear();
+			dataG = service.getAllByEstado(id);
+			mapG.put("id", dataG.size());
+			mapG.put("msj", "Datos obtenidos exitosamente");
+			mapG.put("data", dataG);
+			response = ResponseEntity.ok(mapG);
+		} catch (Exception ex) {
+			response = new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
+	}
 
 	@GetMapping("id/{id}")
 	public ResponseEntity<?> getEgresoById(@PathVariable("id") Long id) {

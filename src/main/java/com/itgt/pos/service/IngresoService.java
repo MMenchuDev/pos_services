@@ -1,9 +1,11 @@
 package com.itgt.pos.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import com.itgt.pos.manager.IngresoRepository;
@@ -19,6 +21,16 @@ public class IngresoService {
 		List<Ingreso> items = new ArrayList<Ingreso>();
 		try {
 			items = repo.findAll();	
+		}catch(Exception ex) {
+			throw new Exception(ex.getMessage());
+		}
+		return items;
+	}
+	
+	public List<Ingreso> getAllByEstado(int idEstado) throws Exception{
+		List<Ingreso> items = new ArrayList<Ingreso>();
+		try {
+			items = repo.findByEstado(idEstado);	
 		}catch(Exception ex) {
 			throw new Exception(ex.getMessage());
 		}
@@ -52,4 +64,22 @@ public class IngresoService {
 			throw new Exception(ex.getMessage());
 		}
 	}	
+
+	public List<HashMap<String, Object>> getProductos(List<HashMap<String, Object>> productos){
+		List<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
+		try {
+			//1 obtener las compras y filtrar las activas
+			List<Ingreso> ingresos = this.getAll();
+			CollectionUtils.filter(ingresos, p -> ((Ingreso) p).getEstado() == 1);
+			
+			//2. 
+			System.out.println(ingresos.size());
+			
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		};
+		
+		
+		return items;
+	}
 }
