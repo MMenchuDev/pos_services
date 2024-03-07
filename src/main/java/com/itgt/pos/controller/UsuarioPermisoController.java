@@ -36,7 +36,7 @@ public class UsuarioPermisoController {
 	    try {
 	      dataG.clear();
 	      dataG = service.getItemByUsuarioId(idUsuario, 1);
-	      if (dataG.size() > 0) {
+	      if (!dataG.isEmpty()) {
 	        map.put("id", 1);
 	        map.put("msj", "Elemento encontrados");
 	        map.put("data", dataG);
